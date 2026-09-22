@@ -1,0 +1,291 @@
+/* ================================
+   1. RESET & BASE
+   ================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color palette — change these to redesign the whole app */
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --bg-elevated: #334155;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --danger: #f87171;
+  --success: #4ade80;
+
+  /* Spacing & radius */
+  --radius: 12px;
+  --radius-sm: 8px;
+
+  /* Fonts */
+  --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Shadows */
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================================
+   2. ACCESSIBILITY
+   ================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ================================
+   3. LAYOUT
+   ================================ */
+.app {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.app__header {
+  text-align: center;
+}
+
+.app__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app__subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* ================================
+   4. SEARCH FORM
+   ================================ */
+.search {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search__input {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search__input::placeholder {
+  color: var(--text-muted);
+}
+
+.search__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.search__button {
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.search__button:hover {
+  background: var(--accent-hover);
+}
+
+.search__button:active {
+  transform: scale(0.98);
+}
+
+.search__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================
+   5. STATUS MESSAGES
+   ================================ */
+.status {
+  text-align: center;
+  font-size: 0.95rem;
+  min-height: 1.5rem;
+  color: var(--text-muted);
+}
+
+.status--error {
+  color: var(--danger);
+}
+
+.status--loading {
+  color: var(--accent);
+}
+
+/* ================================
+   6. WEATHER CARD
+   ================================ */
+.weather {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  animation: fadeIn 0.4s ease;
+}
+.weather[hidden] {
+  display: none;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.weather__location {
+  text-align: center;
+}
+
+.weather__location h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.weather__location p {
+  color: var(--text-muted);
+  text-transform: capitalize;
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+}
+
+.weather__icon img {
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 4px 12px rgba(56, 189, 248, 0.25));
+}
+
+.weather__temperature {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.weather__details {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.detail {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.detail__label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail__value {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ================================
+   7. FOOTER
+   ================================ */
+.app__footer {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.app__footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.app__footer a:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   8. RESPONSIVE (mobile-first tweaks)
+   ================================ */
+@media (max-width: 480px) {
+  body {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .app__title {
+    font-size: 1.4rem;
+  }
+
+  .search {
+    flex-direction: column;
+  }
+
+  .search__button {
+    width: 100%;
+  }
+
+  .weather__temperature {
+    font-size: 3.25rem;
+  }
+
+  .weather__details {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+}

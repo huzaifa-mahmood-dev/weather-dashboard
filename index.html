@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard | Huzaifa Mahmood</title>
+  <meta name="description" content="A clean weather dashboard built with vanilla JavaScript and the OpenWeatherMap API." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="app">
+    <header class="app__header">
+      <h1 class="app__title">Weather Dashboard</h1>
+      <p class="app__subtitle">Search any city to see current weather</p>
+    </header>
+
+    <form class="search" id="search-form">
+      <label for="city-input" class="sr-only">City name</label>
+      <input
+        type="text"
+        id="city-input"
+        class="search__input"
+        placeholder="Enter city name (e.g. Berlin, London, Karachi)"
+        autocomplete="off"
+        required
+      />
+      <button type="submit" class="search__button">Search</button>
+    </form>
+
+    <section class="status" id="status" aria-live="polite"></section>
+
+    <section class="weather" id="weather" hidden>
+      <div class="weather__location">
+        <h2 id="city-name"></h2>
+        <p id="weather-description"></p>
+      </div>
+
+      <div class="weather__icon">
+        <img id="weather-icon" src="" alt="Weather icon" />
+      </div>
+
+      <div class="weather__temperature">
+        <span id="temperature"></span>
+      </div>
+
+      <div class="weather__details">
+        <div class="detail">
+          <span class="detail__label">Feels like</span>
+          <span class="detail__value" id="feels-like"></span>
+        </div>
+        <div class="detail">
+          <span class="detail__label">Humidity</span>
+          <span class="detail__value" id="humidity"></span>
+        </div>
+        <div class="detail">
+          <span class="detail__label">Wind</span>
+          <span class="detail__value" id="wind"></span>
+        </div>
+        <div class="detail">
+          <span class="detail__label">Pressure</span>
+          <span class="detail__value" id="pressure"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app__footer">
+    <p>Built by Huzaifa Mahmood · <a href="https://github.com/huzaifa-mahmood-dev" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
